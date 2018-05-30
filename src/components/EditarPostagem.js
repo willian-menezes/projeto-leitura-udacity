@@ -52,7 +52,7 @@ class EditarPostagem extends Component {
 
     this.props.callEditarPostagem(postagem)
 
-    window.location = '/'
+    this.props.history.push('/')
   }
 
   handleInput = (e) => {

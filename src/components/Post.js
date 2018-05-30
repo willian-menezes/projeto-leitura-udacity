@@ -16,8 +16,8 @@ class Post extends Component {
   componentWillReceiveProps(nextProps) {
     let postagem = nextProps.postagem.postagem
 
-    if(postagem.deleted === true) {
-      window.location = '/erro404'
+    if(postagem.deleted) {
+      this.props.history.push('/erro404')
     }
   }
 
@@ -27,7 +27,7 @@ class Post extends Component {
     if(confirm === true) {
       this.props.callExcluirPostagem(id)
 
-      window.location = '/'
+      this.props.history.push('/')
     }
   }
 

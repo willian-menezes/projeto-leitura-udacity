@@ -76,6 +76,10 @@ export function selecionarOrdem(ordem) {
 }
 
 export function carregarPostagem(postagem) {
+  if(Object.keys(postagem).length === 0){
+    postagem = {deleted: true}
+  }
+
   return {
     type: CARREGAR_POSTAGEM,
     postagem
@@ -208,4 +212,3 @@ export function callVotar(id, data, path, fromPost) {
     )
   }
 }
-

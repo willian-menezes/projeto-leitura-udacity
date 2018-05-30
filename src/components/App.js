@@ -19,13 +19,13 @@ class App extends Component {
         <header>
           <Navbar brand='Postagens' right> </Navbar>
         </header>
-        <Route exact path='/' render={(props) => (
-          <main>
-            <CategoriasList {...props}/>
-            <PostsList {...props}/>
-          </main>
-        )}/>
         <Switch>
+          <Route exact path='/' render={(props) => (
+            <main>
+              <CategoriasList {...props}/>
+              <PostsList {...props}/>
+            </main>
+          )}/>
           <Route exact path='/erro404' component={Erro404}/>
           <Route exact path='/:categoria' render={(props) => (
             <main>
@@ -37,6 +37,7 @@ class App extends Component {
           <Route exact path='/:categoria/:id' component={Post}/>
           <Route exact path='/postagens/:id/editar' component={EditarPostagem}/>
           <Route exact path='/comentarios/:id/editar' component={EditarComentario}/>
+          <Route component={Erro404} />
         </Switch>
       </div>
     );

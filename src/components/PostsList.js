@@ -7,19 +7,13 @@ import sortBy from 'sort-by'
 import moment from 'moment'
 import { Card, CardTitle, Icon, NavItem, Dropdown, Button } from 'react-materialize'
 
-class PostsTable extends Component {
+class PostsList extends Component {
   state = {
     ordem: 'voteScore'
   }
 
   componentDidMount() {
-    let categoria = this.props.match.params.categoria
-
-    if(categoria === undefined) {
-      this.props.callCarregarPostagens()
-    } else {
-      this.props.callCarregarPostagensPorCategoria(categoria)
-    }
+    this.props.callCarregarPostagens()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,7 +45,7 @@ class PostsTable extends Component {
   }
 
   goToPage = (rote) => {
-    window.location = rote
+    this.props.history.push(rote)
   }
 
   render() {
@@ -115,4 +109,4 @@ export default connect(
     selecionarOrdem,
     callVotar
   }
-)(PostsTable)
+)(PostsList)
