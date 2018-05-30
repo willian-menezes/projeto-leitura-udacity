@@ -28,7 +28,7 @@ class Comentarios extends Component {
 
     this.props.callCriarComentario(comentario)
 
-    window.location = '/postagens/' + this.props.id
+    this.props.callCarregarComentarios(this.props.id)
   }
 
   handleExcluirComentario = (id) => {
@@ -36,9 +36,9 @@ class Comentarios extends Component {
 
     if(confirm === true) {
       this.props.callExcluirComentario(id)
+      this.props.callCarregarComentarios(this.props.id)
     }
-
-    window.location = '/postagens/' + this.props.id
+    
   }
 
   handleVotar = (id, option) => {
