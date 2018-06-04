@@ -13,15 +13,33 @@ class PostsList extends Component {
   }
 
   componentDidMount() {
-    this.props.callCarregarPostagens()
+    let categoria = this.props.match.params.categoria
+
+    this.loadPosts(categoria);
   }
 
   componentWillReceiveProps(nextProps) {
+
+    let oldCategoria = this.props.match.params.categoria;
+    let newCategoria = nextProps.match.params.categoria;
+
+    if(newCategoria != oldCategoria){
+      this.loadPosts(newCategoria)
+    }
+
     let ordem = nextProps.ordem.ordem
 
     this.setState({
       ordem: ordem
     })
+  }
+
+  loadPosts = (categoria) => {
+    if(categoria === undefined) {
+      this.props.callCarregarPostagens()
+    } else {
+      this.props.callCarregarPostagensPorCategoria(categoria)
+    }
   }
 
   handleExcluirPostagem = (id) => {
@@ -87,6 +105,7 @@ class PostsList extends Component {
             ]}>
             {postagem.body}
             <span className="date-post"><b>{postagem.category}</b> - {moment(postagem.timestamp).format("DD/MM/YY HH:mm")}</span>
+            <span className="date-post">{postagem.commentCount} Comments</span>
           </Card>
         ))}
       </section>

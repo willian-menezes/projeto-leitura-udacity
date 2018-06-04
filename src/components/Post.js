@@ -13,14 +13,6 @@ class Post extends Component {
     this.props.callCarregarComentarios(this.props.match.params.id)
   }
 
-  componentWillReceiveProps(nextProps) {
-    let postagem = nextProps.postagem.postagem
-
-    if(postagem.deleted) {
-      this.props.history.push('/erro404')
-    }
-  }
-
   handleExcluirPostagem = (id) => {
     let confirm = window.confirm('Deseja mesmo excluir este registro?')
 
@@ -42,6 +34,10 @@ class Post extends Component {
   render() {
     let postagem = this.props.postagem.postagem
     let comentarios = this.props.comentarios.comentarios
+
+    if (postagem.error || postagem.deleted) {
+      this.props.history.push('/erro404');
+    }
 
     return (
       <main>

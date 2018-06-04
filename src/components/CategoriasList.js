@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Button, Dropdown, NavItem} from 'react-materialize'
 import { Link } from 'react-router-dom'
 import { capitalize } from '../utils/helpers'
-import { callCarregarCategorias, selecionarCategoria, callCarregarPostagensPorCategoria, callCarregarPostagens } from '../actions'
+import { callCarregarCategorias, selecionarCategoria } from '../actions'
 import { connect } from 'react-redux'
 
 class CategoriasList extends Component {
@@ -15,12 +15,7 @@ class CategoriasList extends Component {
 
     this.props.selecionarCategoria(categoria)
 
-    if(categoria == ""){
-      this.props.callCarregarPostagens()
-    }else{
-      this.props.callCarregarPostagensPorCategoria(categoria)
-    }
-
+    this.props.history.push('/' + categoria)
   }
 
   render() {
@@ -49,8 +44,6 @@ const mapStateToProps = ({ categoria, categorias }) => ({
 export default connect(mapStateToProps,
   {
     callCarregarCategorias,
-    selecionarCategoria,
-    callCarregarPostagensPorCategoria,
-    callCarregarPostagens
+    selecionarCategoria
   }
 )(CategoriasList)

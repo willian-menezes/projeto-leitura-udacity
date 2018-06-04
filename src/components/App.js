@@ -20,14 +20,8 @@ class App extends Component {
           <Navbar brand='Postagens' right> </Navbar>
         </header>
         <Switch>
-          <Route exact path='/' render={(props) => (
-            <main>
-              <CategoriasList {...props}/>
-              <PostsList {...props}/>
-            </main>
-          )}/>
           <Route exact path='/erro404' component={Erro404}/>
-          <Route exact path='/:categoria' render={(props) => (
+          <Route exact path='/:categoria?' render={(props) => (
             <main>
               <CategoriasList {...props}/>
               <PostsList {...props}/>
